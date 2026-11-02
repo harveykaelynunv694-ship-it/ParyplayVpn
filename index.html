@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,163 +10,421 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="site.css">
     <style>
-        .hero { padding: 72px 0 40px; display: grid; grid-template-columns: 1.25fr .75fr; gap: 48px; align-items: center; }
-        .hero h1 { margin: 16px 0 28px; }
-        .hero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
-        .hero .small { margin-top: 16px; font-size: 13px; color: var(--muted); }
+        .hero {
+            padding: 72px 0 40px;
+            display: grid;
+            grid-template-columns: 1.25fr .75fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero h1 {
+            margin: 16px 0 28px;
+        }
+
+        .hero .cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 36px;
+        }
+
+        .hero .small {
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--muted);
+        }
 
         /* Телефон в стиле приложения */
-        .phone-box { display: flex; justify-content: center; }
-        .phone {
-            width: 290px; border-radius: 44px; background: var(--text); padding: 10px; transform: rotate(2.5deg);
-            box-shadow: 0 50px 80px -40px rgba(15, 23, 42, .55); transition: transform .5s var(--ease);
+        .phone-box {
+            display: flex;
+            justify-content: center;
         }
-        .phone:hover { transform: rotate(0); }
-        .screen { background: var(--bg); border-radius: 35px; padding: 22px 18px 20px; min-height: 540px; display: flex; flex-direction: column; }
-        .app-bar { display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: 600; }
-        .app-bar i { width: 22px; height: 2px; background: var(--text); box-shadow: 0 6px 0 var(--text), 0 -6px 0 var(--text); }
-        .status { margin-top: 56px; text-align: center; }
-        .status b { display: block; font-size: 22px; letter-spacing: -.02em; transition: color .3s; }
-        .status small { color: var(--muted); font-size: 13px; }
-        .power { position: relative; width: 132px; height: 132px; margin: 36px auto 0; border: 0; border-radius: 50%; cursor: pointer; background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 18px 40px -18px rgba(15, 23, 42, .4); transition: background .3s, box-shadow .3s; }
-        .power svg { width: 44px; height: 44px; stroke: var(--muted); transition: stroke .3s; }
-        .power::after { content: ""; position: absolute; inset: -14px; border-radius: 50%; border: 2px solid var(--primary); opacity: 0; }
-        .on .power { background: linear-gradient(135deg, #3B82F6, #1D4ED8); box-shadow: 0 22px 44px -16px rgba(37, 99, 235, .85); }
-        .on .power svg { stroke: #fff; }
-        .on .power::after { animation: ring 2.2s ease-out infinite; }
-        .on .status b { color: var(--primary); }
-        @keyframes ring { from { opacity: .7; transform: scale(.9); } to { opacity: 0; transform: scale(1.25); } }
-        .server { margin-top: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; }
-        .server .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ok); }
-        .server small { display: block; color: var(--muted); font-size: 12px; }
-        .server em { margin-left: auto; font-style: normal; color: var(--muted); font-size: 12px; }
+
+        .phone {
+            width: 290px;
+            border-radius: 44px;
+            background: var(--text);
+            padding: 10px;
+            transform: rotate(2.5deg);
+            box-shadow: 0 50px 80px -40px rgba(15, 23, 42, .55);
+            transition: transform .5s var(--ease);
+        }
+
+        .phone:hover {
+            transform: rotate(0);
+        }
+
+        .screen {
+            background: var(--bg);
+            border-radius: 35px;
+            padding: 22px 18px 20px;
+            min-height: 540px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .app-bar i {
+            width: 22px;
+            height: 2px;
+            background: var(--text);
+            box-shadow: 0 6px 0 var(--text), 0 -6px 0 var(--text);
+        }
+
+        .status {
+            margin-top: 56px;
+            text-align: center;
+        }
+
+        .status b {
+            display: block;
+            font-size: 22px;
+            letter-spacing: -.02em;
+            transition: color .3s;
+        }
+
+        .status small {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .power {
+            position: relative;
+            width: 132px;
+            height: 132px;
+            margin: 36px auto 0;
+            border: 0;
+            border-radius: 50%;
+            cursor: pointer;
+            background: var(--surface);
+            box-shadow: 0 0 0 1px var(--line), 0 18px 40px -18px rgba(15, 23, 42, .4);
+            transition: background .3s, box-shadow .3s;
+        }
+
+        .power svg {
+            width: 44px;
+            height: 44px;
+            stroke: var(--muted);
+            transition: stroke .3s;
+        }
+
+        .power::after {
+            content: "";
+            position: absolute;
+            inset: -14px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            opacity: 0;
+        }
+
+        .on .power {
+            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+            box-shadow: 0 22px 44px -16px rgba(37, 99, 235, .85);
+        }
+
+        .on .power svg {
+            stroke: #fff;
+        }
+
+        .on .power::after {
+            animation: ring 2.2s ease-out infinite;
+        }
+
+        .on .status b {
+            color: var(--primary);
+        }
+
+        @keyframes ring {
+            from {
+                opacity: .7;
+                transform: scale(.9);
+            }
+
+            to {
+                opacity: 0;
+                transform: scale(1.25);
+            }
+        }
+
+        .server {
+            margin-top: auto;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .server .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--ok);
+        }
+
+        .server small {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .server em {
+            margin-left: auto;
+            font-style: normal;
+            color: var(--muted);
+            font-size: 12px;
+        }
 
         /* Нумерованные тезисы */
-        .rows { margin-top: 96px; border-top: 1px solid var(--text); }
-        .row { display: grid; grid-template-columns: 90px 1fr 1.2fr; gap: 24px; padding: 32px 0; border-bottom: 1px solid var(--line-strong); align-items: baseline; transition: background .2s; }
-        .row:hover { background: var(--surface); }
-        .row .n { font-size: 14px; color: var(--primary); font-variant-numeric: tabular-nums; padding-left: 4px; }
-        .row h3 { font-size: clamp(24px, 3.2vw, 38px); letter-spacing: -.035em; line-height: 1.05; font-weight: 800; }
-        .row p { color: var(--text-2); font-size: 17px; }
+        .rows {
+            margin-top: 96px;
+            border-top: 1px solid var(--text);
+        }
 
-        .band { margin-top: 120px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
-        .steps3 { list-style: none; }
-        .steps3 li { padding: 20px 0; border-top: 1px solid var(--text); font-size: 20px; letter-spacing: -.015em; }
-        .steps3 li span { display: block; color: var(--muted); font-size: 15px; letter-spacing: 0; margin-top: 4px; }
+        .row {
+            display: grid;
+            grid-template-columns: 90px 1fr 1.2fr;
+            gap: 24px;
+            padding: 32px 0;
+            border-bottom: 1px solid var(--line-strong);
+            align-items: baseline;
+            transition: background .2s;
+        }
 
-        .final { margin-top: 120px; background: var(--text); color: #fff; border-radius: 28px; padding: clamp(32px, 6vw, 72px); }
-        .final h2 { color: #fff; }
-        .final p { color: #94A3B8; font-size: 18px; margin: 20px 0 32px; max-width: 520px; }
+        .row:hover {
+            background: var(--surface);
+        }
 
-        .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
-        .reveal.in { opacity: 1; transform: none; }
+        .row .n {
+            font-size: 14px;
+            color: var(--primary);
+            font-variant-numeric: tabular-nums;
+            padding-left: 4px;
+        }
+
+        .row h3 {
+            font-size: clamp(24px, 3.2vw, 38px);
+            letter-spacing: -.035em;
+            line-height: 1.05;
+            font-weight: 800;
+        }
+
+        .row p {
+            color: var(--text-2);
+            font-size: 17px;
+        }
+
+        .band {
+            margin-top: 120px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+
+        .steps3 {
+            list-style: none;
+        }
+
+        .steps3 li {
+            padding: 20px 0;
+            border-top: 1px solid var(--text);
+            font-size: 20px;
+            letter-spacing: -.015em;
+        }
+
+        .steps3 li span {
+            display: block;
+            color: var(--muted);
+            font-size: 15px;
+            letter-spacing: 0;
+            margin-top: 4px;
+        }
+
+        .final {
+            margin-top: 120px;
+            background: var(--text);
+            color: #fff;
+            border-radius: 28px;
+            padding: clamp(32px, 6vw, 72px);
+        }
+
+        .final h2 {
+            color: #fff;
+        }
+
+        .final p {
+            color: #94A3B8;
+            font-size: 18px;
+            margin: 20px 0 32px;
+            max-width: 520px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .7s var(--ease), transform .7s var(--ease);
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: none;
+        }
 
         @media (max-width: 860px) {
-            .hero { grid-template-columns: 1fr; padding-top: 40px; }
-            .row { grid-template-columns: 1fr; gap: 8px; }
-            .band { grid-template-columns: 1fr; }
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 40px;
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .band {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
-<header class="top">
-    <div class="wrap">
-        <a class="brand" href="./"><img src="logo.png" alt=""><span>Self <b>VPN</b></span></a>
-        <nav class="nav">
-            <a href="#why">Почему мы</a>
-            <a href="#how">Как начать</a>
-            <a href="privacy.html">Конфиденциальность</a>
-        </nav>
-    </div>
-</header>
-
-<main class="wrap">
-    <section class="hero">
-        <div>
-            <div class="eyebrow">VPN для Android</div>
-            <h1 class="huge">Интернет<br>без <span class="accent">границ.</span></h1>
-            <p class="lead">Self VPN. Одна кнопка, один аккаунт, все серверы сразу. Без ручной настройки и без лишнего.</p>
-            <div class="cta">
-                <a class="btn" href="https://play.google.com/store/apps/details?id=com.selfvpn.vpn">Скачать для Android</a>
-            </div>
-            <p class="small">Создать аккаунт и подключиться можно прямо в приложении.</p>
+    <header class="top">
+        <div class="wrap">
+            <a class="brand" href="./"><img src="logo.png" alt=""><span>Self <b>VPN</b></span></a>
+            <nav class="nav">
+                <a href="#why">Почему мы</a>
+                <a href="#how">Как начать</a>
+                <a href="privacy.html">Конфиденциальность</a>
+            </nav>
         </div>
+    </header>
 
-        <img src="mascot_hero.png" alt="" class="hero-mascot" aria-hidden="true">
-        <div class="phone-box" aria-hidden="true">
-            <div class="phone" id="phone">
-                <div class="screen">
-                    <div class="app-bar"><i></i><span>Self VPN</span><span style="width:22px"></span></div>
-                    <div class="status"><b id="stText">Отключено</b><small id="stSub">Нажмите, чтобы подключиться</small></div>
-                    <button class="power" id="power" tabindex="-1" type="button">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v10"/><path d="M18.4 6.6a9 9 0 1 1-12.8 0"/></svg>
-                    </button>
-                    <div style="height:48px"></div>
-                    <div class="server"><span class="dot"></span><div>Лучший сервер<small>Быстрое соединение</small></div><em>авто</em></div>
+    <main class="wrap">
+        <section class="hero">
+            <div>
+                <div class="eyebrow">VPN для Android</div>
+                <h1 class="huge">Интернет<br>без <span class="accent">границ.</span></h1>
+                <p class="lead">Self VPN. Одна кнопка, один аккаунт, все серверы сразу. Без ручной настройки и без
+                    лишнего.</p>
+                <div class="cta">
+                    <a class="btn" href="https://play.google.com/store/apps/details?id=com.selfvpn.vpn">Скачать для
+                        Android</a>
+                </div>
+                <p class="small">Создать аккаунт и подключиться можно прямо в приложении.</p>
+            </div>
+
+            <img src="mascot_hero.png" alt="" class="hero-mascot" aria-hidden="true">
+            <div class="phone-box" aria-hidden="true">
+                <div class="phone" id="phone">
+                    <div class="screen">
+                        <div class="app-bar"><i></i><span>Self VPN</span><span style="width:22px"></span></div>
+                        <div class="status"><b id="stText">Отключено</b><small id="stSub">Нажмите, чтобы
+                                подключиться</small></div>
+                        <button class="power" id="power" tabindex="-1" type="button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M12 2v10" />
+                                <path d="M18.4 6.6a9 9 0 1 1-12.8 0" />
+                            </svg>
+                        </button>
+                        <div style="height:48px"></div>
+                        <div class="server"><span class="dot"></span>
+                            <div>Лучший сервер<small>Быстрое соединение</small></div><em>авто</em>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
+
+        <section class="rows" id="why">
+            <div class="row reveal"><span class="n">01</span>
+                <h3>Одна кнопка.</h3>
+                <p>Открыли приложение — нажали — подключились. Ни конфигов, ни ключей, ни инструкций.</p>
+            </div>
+            <div class="row reveal"><span class="n">02</span>
+                <h3>Все серверы сразу.</h3>
+                <p>Ключи выдаются автоматически. Добавили новый сервер — он сам появился у каждого пользователя.</p>
+            </div>
+            <div class="row reveal"><span class="n">03</span>
+                <h3>Быстро и устойчиво.</h3>
+                <p>Современная технология соединения с защитой от блокировок: трафик выглядит как обычный, а не как VPN.
+                </p>
+            </div>
+            <div class="row reveal"><span class="n">04</span>
+                <h3>Свои правила.</h3>
+                <p>Раздельное туннелирование: решайте, какие приложения идут через VPN, а какие напрямую.</p>
+            </div>
+            <div class="row reveal"><span class="n">05</span>
+                <h3>Ничего лишнего.</h3>
+                <p>Нет рекламы и трекеров. Мы не передаём ваши данные и не используем их ни для чего, кроме работы
+                    сервиса.</p>
+            </div>
+        </section>
+
+        <section class="band" id="how">
+            <div class="reveal">
+                <div class="eyebrow">Как начать</div>
+                <h2 class="big" style="margin-top:12px">Три шага.<br>Минута.</h2>
+            </div>
+            <ol class="steps3 reveal">
+                <li>Установите приложение<span>Self VPN из Google Play.</span></li>
+                <li>Создайте аккаунт<span>Логин и пароль прямо в приложении.</span></li>
+                <li>Нажмите кнопку<span>Серверы и ключи уже на месте.</span></li>
+            </ol>
+        </section>
+
+        <section class="final reveal">
+            <h2 class="big">Попробуйте<br>сами.</h2>
+            <p>Установка занимает меньше минуты. Аккаунт и все данные можно удалить в любой момент.</p>
+            <a class="btn" href="https://play.google.com/store/apps/details?id=com.selfvpn.vpn">Скачать для Android</a>
+        </section>
+    </main>
+
+    <footer class="foot">
+        <div class="wrap">
+            <div>© 2026 Self VPN · <a href="mailto:seflvpn@paryplay.com">seflvpn@paryplay.com</a></div>
+            <nav>
+                <a href="privacy.html">Политика конфиденциальности</a>
+            </nav>
         </div>
-    </section>
+    </footer>
 
-    <section class="rows" id="why">
-        <div class="row reveal"><span class="n">01</span><h3>Одна кнопка.</h3><p>Открыли приложение — нажали — подключились. Ни конфигов, ни ключей, ни инструкций.</p></div>
-        <div class="row reveal"><span class="n">02</span><h3>Все серверы сразу.</h3><p>Ключи выдаются автоматически. Добавили новый сервер — он сам появился у каждого пользователя.</p></div>
-        <div class="row reveal"><span class="n">03</span><h3>Быстро и устойчиво.</h3><p>Современная технология соединения с защитой от блокировок: трафик выглядит как обычный, а не как VPN.</p></div>
-        <div class="row reveal"><span class="n">04</span><h3>Свои правила.</h3><p>Раздельное туннелирование: решайте, какие приложения идут через VPN, а какие напрямую.</p></div>
-        <div class="row reveal"><span class="n">05</span><h3>Ничего лишнего.</h3><p>Нет рекламы и трекеров. Мы не передаём ваши данные и не используем их ни для чего, кроме работы сервиса.</p></div>
-    </section>
+    <script>
+        // Демонстрационный экран: по клику «подключается» так же, как в приложении
+        const phone = document.getElementById('phone');
+        const st = document.getElementById('stText'), sub = document.getElementById('stSub');
+        let connected = false, busy = false;
+        function set(on) {
+            phone.classList.toggle('on', on);
+            st.textContent = on ? 'Подключено' : 'Отключено';
+            sub.textContent = on ? 'Ваше соединение защищено' : 'Нажмите, чтобы подключиться';
+            connected = on;
+        }
+        function toggle() {
+            if (busy) return;
+            busy = true; st.textContent = connected ? 'Отключаем…' : 'Подключаем…';
+            setTimeout(() => { set(!connected); busy = false; }, 900);
+        }
+        document.getElementById('power').addEventListener('click', toggle);
+        setTimeout(toggle, 1400);
 
-    <section class="band" id="how">
-        <div class="reveal">
-            <div class="eyebrow">Как начать</div>
-            <h2 class="big" style="margin-top:12px">Три шага.<br>Минута.</h2>
-        </div>
-        <ol class="steps3 reveal">
-            <li>Установите приложение<span>Self VPN из Google Play.</span></li>
-            <li>Создайте аккаунт<span>Логин и пароль прямо в приложении.</span></li>
-            <li>Нажмите кнопку<span>Серверы и ключи уже на месте.</span></li>
-        </ol>
-    </section>
-
-    <section class="final reveal">
-        <h2 class="big">Попробуйте<br>сами.</h2>
-        <p>Установка занимает меньше минуты. Аккаунт и все данные можно удалить в любой момент.</p>
-        <a class="btn" href="https://play.google.com/store/apps/details?id=com.selfvpn.vpn">Скачать для Android</a>
-    </section>
-</main>
-
-<footer class="foot">
-    <div class="wrap">
-        <div>© 2026 Self VPN · <a href="mailto:support@selfvpn.com">support@selfvpn.com</a></div>
-        <nav>
-            <a href="privacy.html">Политика конфиденциальности</a>
-        </nav>
-    </div>
-</footer>
-
-<script>
-    // Демонстрационный экран: по клику «подключается» так же, как в приложении
-    const phone = document.getElementById('phone');
-    const st = document.getElementById('stText'), sub = document.getElementById('stSub');
-    let connected = false, busy = false;
-    function set(on) {
-        phone.classList.toggle('on', on);
-        st.textContent = on ? 'Подключено' : 'Отключено';
-        sub.textContent = on ? 'Ваше соединение защищено' : 'Нажмите, чтобы подключиться';
-        connected = on;
-    }
-    function toggle() {
-        if (busy) return;
-        busy = true; st.textContent = connected ? 'Отключаем…' : 'Подключаем…';
-        setTimeout(() => { set(!connected); busy = false; }, 900);
-    }
-    document.getElementById('power').addEventListener('click', toggle);
-    setTimeout(toggle, 1400);
-
-    const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    }), { threshold: .15 }) : null;
-    document.querySelectorAll('.reveal').forEach(el => io ? io.observe(el) : el.classList.add('in'));
-</script>
+        const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        }), { threshold: .15 }) : null;
+        document.querySelectorAll('.reveal').forEach(el => io ? io.observe(el) : el.classList.add('in'));
+    </script>
 </body>
+
 </html>
