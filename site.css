@@ -1,4 +1,4 @@
-/* Общие стили публичных страниц ParyplayVPN. Палитра — как в мобильном приложении (app/lib/theme/style.dart). */
+/* Общие стили публичных страниц Self VPN. Палитра — как в мобильном приложении (app/lib/theme/style.dart). */
 :root {
     --bg: #F4F7FB; --surface: #fff; --text: #0F172A; --text-2: #334155; --muted: #64748B;
     --line: #E2E8F0; --line-strong: #CBD5E1; --primary: #2563EB; --primary-hover: #1D4ED8;
@@ -80,3 +80,35 @@ h2.big { font-size: clamp(30px, 5vw, 56px); line-height: 1.02; letter-spacing: -
     .doc table { display: block; overflow-x: auto; }
 }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
+/* Hero Mascot Background Accent */
+.hero { position: relative; }
+.hero-mascot {
+    position: absolute; right: -10px; top: 15px; width: 320px; max-width: 45vw; opacity: 0.14; pointer-events: none;
+    filter: drop-shadow(0 20px 40px rgba(37, 99, 235, 0.35));
+    animation: mascotFloat 8s ease-in-out infinite alternate;
+    z-index: 0;
+}
+@keyframes mascotFloat {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-14px) rotate(2deg); }
+}
+.phone-box { position: relative; z-index: 1; }
+.hero > div:first-child { position: relative; z-index: 1; }
+
+.screen {
+    background: #F4F7FB;
+    position: relative; overflow: hidden;
+}
+.screen::before {
+    content: ""; position: absolute; right: -18%; top: 25%; width: 85%; height: 55%;
+    background: url('mascot_hero.png') center/contain no-repeat;
+    opacity: 0.08; pointer-events: none;
+}
+
+.final {
+    position: relative; overflow: hidden;
+    background: #0F172A url('card_bg.jpg') center/cover no-repeat !important;
+    box-shadow: 0 30px 60px -20px rgba(15, 23, 42, 0.55);
+}
+.brand img { border-radius: 7px; }
